@@ -29,6 +29,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Items", "Items", "{0DAD39A1
 	ProjectSection(SolutionItems) = preProject
 		CommonAssemblyInfo.cs = CommonAssemblyInfo.cs
 		Demo.ruleset = Demo.ruleset
+		readme.txt = readme.txt
 		script.sql = script.sql
 	EndProjectSection
 EndProject
