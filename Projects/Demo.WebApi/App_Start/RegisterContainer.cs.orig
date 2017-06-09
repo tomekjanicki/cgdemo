@@ -1,0 +1,126 @@
+﻿namespace Next.WTR.Web
+{
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+    using System.Web.Http;
+    using System.Web.Mvc;
+    using AutoMapper;
+    using Next.WTR.Common.Cache;
+    using Next.WTR.Common.Cache.Interfaces;
+    using Next.WTR.Common.Handlers;
+    using Next.WTR.Common.Handlers.Interfaces;
+    using Next.WTR.Common.Tools;
+    using Next.WTR.Common.Tools.Interfaces;
+    using Next.WTR.Common.Web.Infrastructure.Security;
+    using Next.WTR.Common.Web.Infrastructure.Security.Interface;
+    using Next.WTR.Logic;
+    using Next.WTR.Logic.CQ.Apis.Product;
+    using Next.WTR.Logic.CQ.TemplateMethods.Commands.Interfaces;
+    using Next.WTR.Logic.CQ.TemplateMethods.Queries.Interfaces;
+    using Next.WTR.Logic.Database;
+    using Next.WTR.Logic.Database.Interfaces;
+    using Next.WTR.Logic.Facades.Apis;
+    using Next.WTR.Logic.Facades.Pages;
+    using Next.WTR.Logic.Facades.Shared;
+    using Next.WTR.Logic.Helpers;
+    using Next.WTR.Logic.Helpers.Interfaces;
+    using Next.WTR.Web.Infrastructure;
+    using Next.WTR.Web.Infrastructure.Security;
+    using SimpleInjector;
+    using SimpleInjector.Integration.Web;
+    using SimpleInjector.Integration.Web.Mvc;
+    using SimpleInjector.Integration.WebApi;
+
+    public static class RegisterContainer
+    {
+        public static void Execute(HttpConfiguration configuration)
+        {
+            var container = new Container();
+
+            container.Options.DefaultScopedLifestyle = new WebRequestLifestyle(true);
+
+            container.RegisterMvcControllers();
+
+            container.RegisterWebApiControllers(configuration);
+
+            RegisterScoped(container);
+
+            RegisterSingletons(container);
+
+            container.Verify();
+
+            configuration.DependencyResolver = new SimpleInjectorWebApiDependencyResolver(container);
+
+            DependencyResolver.SetResolver(new SimpleInjectorDependencyResolver(container));
+        }
+
+        private static void RegisterSingletons(Container container)
+        {
+            container.RegisterSingleton<IMediator, Mediator>();
+            container.RegisterSingleton(new SingleInstanceFactory(container.GetInstance));
+            container.RegisterSingleton<IAssemblyVersionProvider, AssemblyVersionProvider>();
+            container.RegisterSingleton<IDbConnectionProvider, DbConnectionProvider>();
+            container.RegisterSingleton<IEntryAssemblyProvider, EntryAssemblyProvider>();
+            container.RegisterSingleton<IAuthenticationService, AuthenticationService>();
+            container.RegisterSingleton<ILoginPostQueryFactory, LoginPostQueryFactory>();
+            container.RegisterSingleton<ICacheProvider, CacheProvider>();
+            container.RegisterSingleton<IGetUserDataByUserIdQueryFactory, GetUserDataByUserIdQueryIdQueryFactory>();
+            container.RegisterSingleton<IGetCostCentreDataByUserIdQueryFactory, GetCostCentreDataByUserIdQueryFactory>();
+            container.RegisterSingleton<IGetProjectDataByUserIdQueryFactory, GetProjectDataByUserIdQueryFactory>();
+            container.RegisterSingleton<IUpdateTaskCommandFactory, UpdateTaskCommandFactory>();
+            container.RegisterSingleton<IGetProjectLogDataQueryFactory, GetProjectLogDataQueryFactory>();
+            container.RegisterSingleton<IAccessConfigurationMapProvider, AccessConfigurationMapProvider>();
+            container.RegisterSingleton<IAccessResolver, AccessResolver>();
+            container.RegisterSingleton(GetMapper);
+        }
+
+        private static void RegisterScoped(Container container)
+        {
+            var assemblies = GetAssemblies().ToArray();
+            var lifeStyle = Lifestyle.Scoped;
+            container.Register(typeof(IRequestHandler<,>), assemblies, lifeStyle);
+            container.Register(typeof(IVoidRequestHandler<>), assemblies, lifeStyle);
+            container.Register<ProductsFilterPagedFacade>(lifeStyle);
+            container.Register<ProductsGetFacade>(lifeStyle);
+            container.Register<VersionGetFacade>(lifeStyle);
+            container.Register<ProductsDeleteFacade>(lifeStyle);
+            container.Register<ProductsPutFacade>(lifeStyle);
+            container.Register<ProductsPostFacade>(lifeStyle);
+            container.Register<HomeShowFacade>(lifeStyle);
+            container.Register<LoginPostFacade>(lifeStyle);
+            container.Register<LoginShowFacade>(lifeStyle);
+<<<<<<< HEAD
+            container.Register<ProjectTaskLogBrowseGetProjectTasksLogPagedFacade>(lifeStyle);
+            container.Register<ProjectTaskLogBrowseShowFacade>(lifeStyle);
+=======
+            container.Register<ProjectTaskBrowseGetProjectTasksPagedFacade>(lifeStyle);
+            container.Register<ProjectTaskBrowseShowFacade>(lifeStyle);
+>>>>>>> add public backend api
+            container.Register<ProjectTaskUpdateTasksFacade>(lifeStyle);
+            container.Register<LogoutPostFacade>(lifeStyle);
+            container.Register<ProjectTaskShowFacade>(lifeStyle);
+            container.Register<GetClaimsPrincipalByUserIdFacade>(lifeStyle);
+            container.Register<Logic.CQ.Apis.Product.Delete.Interfaces.IRepository, Logic.CQ.Apis.Product.Delete.Repository>(lifeStyle);
+            container.Register<SharedQueries>(lifeStyle);
+            container.Register<IUpdateRepository<Logic.CQ.Apis.Product.Put.Command>, Logic.CQ.Apis.Product.Put.Repository>(lifeStyle);
+            container.Register<Logic.CQ.Apis.Product.Post.Interfaces.IRepository, Logic.CQ.Apis.Product.Post.Repository>(lifeStyle);
+            container.Register<IGetRepository<Logic.CQ.Apis.Product.Get.Product>, Logic.CQ.Apis.Product.Get.Repository>(lifeStyle);
+            container.Register<Logic.CQ.Pages.ProjectTask.UpdateTasks.Interfaces.IRepository, Logic.CQ.Pages.ProjectTask.UpdateTasks.Repository>(lifeStyle);
+            container.Register<Logic.CQ.Shared.GetProjectDataByUserId.Interfaces.IRepository, Logic.CQ.Shared.GetProjectDataByUserId.Repository>(lifeStyle);
+            container.Register<Logic.CQ.Shared.GetProjectLogData.Interfaces.IRepository, Logic.CQ.Shared.GetProjectLogData.Repository>(lifeStyle);
+        }
+
+        private static IEnumerable<Assembly> GetAssemblies()
+        {
+            yield return typeof(Logic.CQ.Apis.Product.Get.QueryHandler).GetTypeInfo().Assembly;
+        }
+
+        private static IMapper GetMapper()
+        {
+            var configuration = new MapperConfiguration(AutoMapperConfiguration.Configure);
+            configuration.AssertConfigurationIsValid();
+            return configuration.CreateMapper();
+        }
+    }
+}

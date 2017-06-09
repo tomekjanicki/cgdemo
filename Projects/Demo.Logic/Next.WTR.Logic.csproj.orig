@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AC510806-42A1-4B3F-8A6C-97B96398D475}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Next.WTR.Logic</RootNamespace>
+    <AssemblyName>Next.WTR.Logic</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <CodeAnalysisRuleSet>..\..\Next.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>..\..\Next.ruleset</CodeAnalysisRuleSet>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=5.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AutoMapper.5.1.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Dapper, Version=1.50.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Dapper.1.50.2\lib\net451\Dapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NullGuard, Version=1.4.6.0, Culture=neutral, PublicKeyToken=1958ac8092168428, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NullGuard.Fody.1.4.6\Lib\dotnet\NullGuard.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Thinktecture.IdentityModel.Core, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Thinktecture.IdentityModel.Core.1.4.0\lib\net45\Thinktecture.IdentityModel.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="AutoMapperConfiguration.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="CQ\Apis\Product\FilterPaged\Columns.cs" />
+    <Compile Include="CQ\Pages\Home\Show\Query.cs" />
+    <Compile Include="CQ\Pages\Home\Show\QueryHandler.cs" />
+    <Compile Include="CQ\Apis\Product\Delete\Command.cs" />
+    <Compile Include="CQ\Apis\Product\Delete\CommandHandler.cs" />
+    <Compile Include="CQ\Apis\Product\Delete\Interfaces\IRepository.cs" />
+    <Compile Include="CQ\Apis\Product\Delete\Repository.cs" />
+    <Compile Include="CQ\Apis\Product\Get\Repository.cs" />
+    <Compile Include="CQ\Apis\Product\Post\Command.cs" />
+    <Compile Include="CQ\Apis\Product\Post\CommandHandler.cs" />
+    <Compile Include="CQ\Apis\Product\Post\Interfaces\IRepository.cs" />
+    <Compile Include="CQ\Apis\Product\Post\Repository.cs" />
+    <Compile Include="CQ\Apis\Product\Put\Command.cs" />
+    <Compile Include="CQ\Apis\Product\Put\CommandHandler.cs" />
+    <Compile Include="CQ\Apis\Product\Put\Repository.cs" />
+    <Compile Include="CQ\Apis\Product\SharedQueries.cs" />
+    <Compile Include="CQ\Apis\Product\ValueObjects\Code.cs" />
+    <Compile Include="CQ\Apis\Product\ValueObjects\Name.cs" />
+    <Compile Include="CQ\Pages\Login\Post\Query.cs" />
+    <Compile Include="CQ\Pages\Login\Post\QueryHandler.cs" />
+    <Compile Include="CQ\Pages\ProjectTask\UpdateTasks\CommandHandler.cs" />
+    <Compile Include="CQ\Pages\ProjectTask\UpdateTasks\Interfaces\IRepository.cs" />
+    <Compile Include="CQ\Pages\ProjectTask\UpdateTasks\Repository.cs" />
+    <Compile Include="CQ\Shared\GetCostCentreDataByUserId\CostCentre.cs" />
+    <Compile Include="CQ\Shared\GetCostCentreDataByUserId\Query.cs" />
+    <Compile Include="CQ\Shared\GetCostCentreDataByUserId\QueryHandler.cs" />
+    <Compile Include="CQ\Pages\ProjectTask\UpdateTasks\Command.cs" />
+    <Compile Include="CQ\Pages\ProjectTask\UpdateTasks\Result.cs" />
+    <Compile Include="CQ\Pages\ProjectTask\UpdateTasks\Task.cs" />
+<<<<<<< HEAD
+    <Compile Include="CQ\Shared\GetProjectLogData\CategoryWithTaskDto.cs" />
+    <Compile Include="CQ\Shared\GetProjectLogData\CostCentreCountDto.cs" />
+    <Compile Include="CQ\Shared\GetProjectLogData\Interfaces\IRepository.cs" />
+    <Compile Include="CQ\Shared\GetProjectLogData\Repository.cs" />
+    <Compile Include="CQ\Shared\GetProjectLogData\Project.cs" />
+    <Compile Include="CQ\Shared\GetProjectLogData\ProjectData.cs" />
+    <Compile Include="CQ\Shared\GetProjectLogData\ProjectDto.cs" />
+=======
+    <Compile Include="CQ\Shared\GetProjectLogData\Project.cs" />
+    <Compile Include="CQ\Shared\GetProjectLogData\ProjectData.cs" />
+>>>>>>> add GetProjectLogData
+    <Compile Include="CQ\Shared\GetProjectLogData\Query.cs" />
+    <Compile Include="CQ\Shared\GetProjectDataByUserId\CostCentreCountDto.cs" />
+    <Compile Include="CQ\Shared\GetProjectDataByUserId\Interfaces\IRepository.cs" />
+    <Compile Include="CQ\Shared\GetProjectDataByUserId\Project.cs" />
+    <Compile Include="CQ\Shared\GetProjectDataByUserId\ProjectData.cs" />
+    <Compile Include="CQ\Shared\GetProjectDataByUserId\Query.cs" />
+    <Compile Include="CQ\Shared\GetProjectDataByUserId\QueryHandler.cs" />
+    <Compile Include="CQ\Shared\GetProjectDataByUserId\Repository.cs" />
+    <Compile Include="CQ\Shared\GetProjectDataByUserId\Task.cs" />
+    <Compile Include="CQ\Shared\GetProjectDataByUserId\TaskCategory.cs" />
+    <Compile Include="CQ\Shared\GetProjectDataByUserId\ProjectDto.cs" />
+    <Compile Include="CQ\Shared\GetProjectDataByUserId\CategoryWithTaskDto.cs" />
+    <Compile Include="CQ\Shared\GetProjectLogData\QueryHandler.cs" />
+    <Compile Include="CQ\Shared\GetProjectLogData\Task.cs" />
+    <Compile Include="CQ\Shared\GetProjectLogData\TaskCategory.cs" />
+    <Compile Include="CQ\Shared\GetProjectLogData\User.cs" />
+<<<<<<< HEAD
+    <Compile Include="CQ\Shared\GetProjectLogData\UserDto.cs" />
+=======
+>>>>>>> add GetProjectLogData
+    <Compile Include="CQ\Shared\GetUserDataByUserId\Query.cs" />
+    <Compile Include="CQ\Shared\GetUserDataByUserId\QueryHandler.cs" />
+    <Compile Include="CQ\Shared\GetUserDataByUserId\UserData.cs" />
+    <Compile Include="CQ\TemplateMethods\Commands\DeleteCommandHandlerTemplate.cs" />
+    <Compile Include="CQ\TemplateMethods\Commands\Interfaces\IIdVersion.cs" />
+    <Compile Include="CQ\TemplateMethods\Commands\Interfaces\IDeleteRepository.cs" />
+    <Compile Include="CQ\TemplateMethods\Commands\Interfaces\IUpdateRepository.cs" />
+    <Compile Include="CQ\TemplateMethods\Commands\UpdateCommandHandlerTemplate.cs" />
+    <Compile Include="CQ\TemplateMethods\Queries\GetCommandHandlerTemplate.cs" />
+    <Compile Include="CQ\TemplateMethods\Queries\Interfaces\IGetRepository.cs" />
+    <Compile Include="CQ\TemplateMethods\Queries\Interfaces\IId.cs" />
+    <Compile Include="Database\DbConnectionProvider.cs" />
+    <Compile Include="CQ\Apis\OrderByParser.cs" />
+    <Compile Include="Facades\Base\Helper.cs" />
+    <Compile Include="Facades\Pages\ProjectTaskLogBrowseGetProjectTasksLogPagedFacade.cs" />
+    <Compile Include="Facades\Pages\ProjectTaskLogBrowseShowFacade.cs" />
+    <Compile Include="Facades\Pages\ProjectTaskUpdateTasksFacade.cs" />
+    <Compile Include="Facades\Pages\ProjectTaskGetProjectTasksPagedFacade.cs" />
+    <Compile Include="Facades\Pages\HomeShowFacade.cs" />
+    <Compile Include="Facades\Apis\ProductsDeleteFacade.cs" />
+    <Compile Include="Facades\Apis\ProductsPostFacade.cs" />
+    <Compile Include="Facades\Apis\ProductsPutFacade.cs" />
+    <Compile Include="Facades\Pages\LoginShowFacade.cs" />
+    <Compile Include="Facades\Pages\LogoutPostFacade.cs" />
+    <Compile Include="Facades\Pages\ProjectTaskShowFacade.cs" />
+    <Compile Include="Facades\Pages\ManagerReportShowFacade.cs" />
+    <Compile Include="Facades\Shared\GetClaimsPrincipalByUserIdFacade.cs" />
+    <Compile Include="Helpers\AuthenticationService.cs" />
+    <Compile Include="Helpers\GetCostCentreDataByUserIdQueryFactory.cs" />
+    <Compile Include="Helpers\GetProjectDataByUserIdQueryFactory.cs" />
+    <Compile Include="Helpers\GetUserDataByUserIdQueryIdQueryFactory.cs" />
+    <Compile Include="Helpers\GetProjectLogDataQueryFactory.cs" />
+    <Compile Include="Helpers\Interfaces\IAuthenticationService.cs" />
+    <Compile Include="Facades\Pages\LoginPostFacade.cs" />
+    <Compile Include="Helpers\Interfaces\IGetProjectLogDataQueryFactory.cs" />
+    <Compile Include="Helpers\Interfaces\IUpdateTaskCommandFactory.cs" />
+    <Compile Include="Helpers\Interfaces\IGetCostCentreDataByUserIdQueryFactory.cs" />
+    <Compile Include="Helpers\Interfaces\IGetProjectDataByUserIdQueryFactory.cs" />
+    <Compile Include="Helpers\Interfaces\IGetUserDataByUserIdQueryFactory.cs" />
+    <Compile Include="Helpers\Interfaces\ILoginPostQueryFactory.cs" />
+    <Compile Include="Helpers\UpdateTaskCommandFactory.cs" />
+    <Compile Include="Helpers\LoginPostQueryFactory.cs" />
+    <Compile Include="Shared\Error.cs" />
+    <Compile Include="Facades\Apis\ProductsFilterPagedFacade.cs" />
+    <Compile Include="Facades\Apis\ProductsGetFacade.cs" />
+    <Compile Include="Shared\ErrorType.cs" />
+    <Compile Include="Facades\Apis\VersionGetFacade.cs" />
+    <Compile Include="Database\Interfaces\IDbConnectionProvider.cs" />
+    <Compile Include="CQ\Apis\Product\FilterPaged\Product.cs" />
+    <Compile Include="CQ\Apis\Product\FilterPaged\QueryHandler.cs" />
+    <Compile Include="CQ\Apis\Product\FilterPaged\Query.cs" />
+    <Compile Include="CQ\Apis\Product\Get\Product.cs" />
+    <Compile Include="CQ\Apis\Product\Get\Query.cs" />
+    <Compile Include="CQ\Apis\Product\Get\QueryHandler.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="CQ\Apis\Version\Get\QueryHandler.cs" />
+    <Compile Include="CQ\Apis\Version\Get\Query.cs" />
+    <Compile Include="Shared\ErrorResultExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\Newtonsoft.Json.dll" />
+    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
+    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="FodyWeavers.xml">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Next.WTR.Common\Next.WTR.Common.csproj">
+      <Project>{B97EFB86-FB8B-43B7-9892-D4E2AF7257B6}</Project>
+      <Name>Next.WTR.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Next.WTR.Types\Next.WTR.Types.csproj">
+      <Project>{9033BA8A-C531-4DCD-A342-A4B57DDD11D9}</Project>
+      <Name>Next.WTR.Types</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Next.WTR.Web.Dtos\Next.WTR.Web.Dtos.csproj">
+      <Project>{D383FC01-3AB8-4106-98EA-543607ACE0E9}</Project>
+      <Name>Next.WTR.Web.Dtos</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\..\packages\Fody.1.29.4\build\dotnet\Fody.targets" Condition="Exists('..\..\packages\Fody.1.29.4\build\dotnet\Fody.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\Fody.1.29.4\build\dotnet\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Fody.1.29.4\build\dotnet\Fody.targets'))" />
+    <Error Condition="!Exists('..\..\packages\MSBuildTasks.1.5.0.214\build\MSBuildTasks.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\MSBuildTasks.1.5.0.214\build\MSBuildTasks.targets'))" />
+  </Target>
+  <Import Project="..\..\packages\MSBuildTasks.1.5.0.214\build\MSBuildTasks.targets" Condition="Exists('..\..\packages\MSBuildTasks.1.5.0.214\build\MSBuildTasks.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

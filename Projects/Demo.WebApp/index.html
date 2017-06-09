@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Customers</title>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <div data-bind="visible: !editVisible()">
+            <h1>Customers</h1>
+            <input type="button" class="btn btn-info" value="Add" data-bind="click: addCustomer" />
+            <br />
+            <br />
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Surname</th>
+                        <th>Phone Number</th>
+                        <th>Address</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: customers">
+                    <tr>
+                        <td data-bind="text: name"></td>
+                        <td data-bind="text: surname"></td>
+                        <td data-bind="text: phoneNumber"></td>
+                        <td data-bind="text: address"></td>
+                        <td><input type="button" class="btn btn-info" value="Edit" data-bind="click: $parent.editCustomer"></td>
+                        <td><input type="button" class="btn btn-info" value="Delete" data-bind="click: $parent.deleteCustomer"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <br />
+            <input type="button" class="btn btn-info" value="Add" data-bind="click: addCustomer" />
+        </div>
+        <div data-bind="visible: editVisible, if: editVisible" style="display: none">
+            <form class="form-horizontal">
+                <fieldset>
+                    <legend data-bind="text: customer().title"></legend>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Name</label>
+                        <div class="col-md-4">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input placeholder="e.g. John" class="form-control" type="text" data-bind="value: customer().name">
+                            </div>
+                            <small data-bind="text: customer().nameValidationText"></small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Surname</label>
+                        <div class="col-md-4">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input placeholder="e.g. Bush" class="form-control" type="text" data-bind="value: customer().surname">
+                            </div>
+                            <small data-bind="text: customer().surnameValidationText"></small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Phone number</label>
+                        <div class="col-md-4">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                                <input placeholder="e.g. (845)555-1212" class="form-control" type="text" data-bind="value: customer().phoneNumber">
+                            </div>
+                            <small data-bind="text: customer().phoneNumberValidationText"></small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Address</label>
+                        <div class="col-md-4">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                <input placeholder="(optionaly) e.g. 145 Text Drive, NY" class="form-control" type="text" data-bind="value: customer().address">
+                            </div>
+                            <small data-bind="text: customer().addressValidationText"></small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label"></label>
+                        <div class="col-md-4">
+                            <input type="button" class="btn btn-default" value="Save" data-bind="click: insertOrUpdateCustomer" />
+                            <input type="button" class="btn btn-info" value="Cancel" data-bind="click: backToList">
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <div class="modal fade" id="dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Error</h4>
+                    </div>
+                    <div class="modal-body">
+                        <span data-bind="text: modalText"></span>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="Scripts/jquery-3.1.1.js"></script>
+    <script src="Scripts/knockout-3.4.2.debug.js"></script>
+    <script src="Scripts/bootstrap.js"></script>
+    <script src="Scripts/App/CustomerViewModel.js"></script>
+</body>
+</html>

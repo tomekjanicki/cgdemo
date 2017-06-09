@@ -1,0 +1,96 @@
+﻿namespace Next.WTR.Logic
+{
+    using System.Collections.Generic;
+    using AutoMapper;
+    using Next.WTR.Types.FunctionalExtensions;
+    using Next.WTR.Web.Dtos;
+    using Next.WTR.Web.Dtos.Apis.Product.FilterPaged;
+    using NullGuard;
+
+    public static class AutoMapperConfiguration
+    {
+        public static void Configure(IMapperConfigurationExpression expression)
+        {
+            expression.CreateMap<CQ.Apis.Product.FilterPaged.Product, Product>();
+            expression.CreateMap<Common.ValueObjects.Paged<CQ.Apis.Product.FilterPaged.Product>, Paged<Product>>()
+                .ConvertUsing(new PagedConverter<CQ.Apis.Product.FilterPaged.Product, Product>());
+            expression.CreateMap<CQ.Apis.Product.Get.Product, Web.Dtos.Apis.Product.Get.Product>();
+
+            expression.CreateMap<Common.ValueObjects.Paged<CQ.Shared.GetProjectDataByUserId.Project>, Paged<Web.Dtos.Pages.ProjectTask.Show.ViewModel.Project>>()
+                .ConvertUsing(new PagedConverter<CQ.Shared.GetProjectDataByUserId.Project, Web.Dtos.Pages.ProjectTask.Show.ViewModel.Project>());
+            expression.CreateMap<Maybe<CQ.Shared.GetProjectDataByUserId.Task>, Web.Dtos.Pages.ProjectTask.Task>()
+                .ConvertUsing(new MaybeConverter<CQ.Shared.GetProjectDataByUserId.Task, Web.Dtos.Pages.ProjectTask.Task>());
+            expression.CreateMap<CQ.Shared.GetProjectDataByUserId.Project, Web.Dtos.Pages.ProjectTask.Show.ViewModel.Project>();
+            expression.CreateMap<CQ.Shared.GetProjectDataByUserId.TaskCategory, Web.Dtos.Pages.ProjectTask.TaskCategory>();
+            expression.CreateMap<CQ.Shared.GetProjectDataByUserId.Task, Web.Dtos.Pages.ProjectTask.Task>();
+
+            expression.CreateMap<Common.ValueObjects.Paged<CQ.Shared.GetProjectDataByUserId.Project>, Paged<Web.Dtos.Pages.ProjectTask.GetProjectTasksPaged.ViewModel>>()
+                .ConvertUsing(new PagedConverter<CQ.Shared.GetProjectDataByUserId.Project, Web.Dtos.Pages.ProjectTask.GetProjectTasksPaged.ViewModel>());
+            expression.CreateMap<Maybe<CQ.Shared.GetProjectDataByUserId.Task>, Web.Dtos.Pages.ProjectTask.Task>()
+                .ConvertUsing(new MaybeConverter<CQ.Shared.GetProjectDataByUserId.Task, Web.Dtos.Pages.ProjectTask.Task>());
+            expression.CreateMap<CQ.Shared.GetProjectDataByUserId.Project, Web.Dtos.Pages.ProjectTask.GetProjectTasksPaged.ViewModel>();
+            expression.CreateMap<CQ.Shared.GetProjectDataByUserId.TaskCategory, Web.Dtos.Pages.ProjectTask.TaskCategory>();
+            expression.CreateMap<CQ.Shared.GetProjectDataByUserId.Task, Web.Dtos.Pages.ProjectTask.Task>();
+<<<<<<< HEAD
+
+            expression.CreateMap<Common.ValueObjects.Paged<CQ.Shared.GetProjectLogData.Project>, Paged<Web.Dtos.Pages.ProjectTaskLogBrowse.Show.ViewModel.Project>>()
+                .ConvertUsing(new PagedConverter<CQ.Shared.GetProjectLogData.Project, Web.Dtos.Pages.ProjectTaskLogBrowse.Show.ViewModel.Project>());
+            expression.CreateMap<Maybe<CQ.Shared.GetProjectLogData.Task>, Web.Dtos.Pages.ProjectTaskLogBrowse.Task>()
+                .ConvertUsing(new MaybeConverter<CQ.Shared.GetProjectLogData.Task, Web.Dtos.Pages.ProjectTaskLogBrowse.Task>());
+            expression.CreateMap<CQ.Shared.GetProjectLogData.Project, Web.Dtos.Pages.ProjectTaskLogBrowse.Show.ViewModel.Project>();
+            expression.CreateMap<CQ.Shared.GetProjectLogData.TaskCategory, Web.Dtos.Pages.ProjectTaskLogBrowse.TaskCategory>();
+            expression.CreateMap<CQ.Shared.GetProjectLogData.Task, Web.Dtos.Pages.ProjectTaskLogBrowse.Task>();
+            expression.CreateMap<CQ.Shared.GetProjectLogData.User, Web.Dtos.Pages.ProjectTaskLogBrowse.User>();
+
+            expression.CreateMap<Common.ValueObjects.Paged<CQ.Shared.GetProjectLogData.Project>, Paged<Web.Dtos.Pages.ProjectTaskLogBrowse.GetProjectTasksLogPaged.ViewModel>>()
+                .ConvertUsing(new PagedConverter<CQ.Shared.GetProjectLogData.Project, Web.Dtos.Pages.ProjectTaskLogBrowse.GetProjectTasksLogPaged.ViewModel>());
+            expression.CreateMap<Maybe<CQ.Shared.GetProjectLogData.Task>, Web.Dtos.Pages.ProjectTaskLogBrowse.Task>()
+                .ConvertUsing(new MaybeConverter<CQ.Shared.GetProjectLogData.Task, Web.Dtos.Pages.ProjectTaskLogBrowse.Task>());
+            expression.CreateMap<CQ.Shared.GetProjectLogData.Project, Web.Dtos.Pages.ProjectTaskLogBrowse.GetProjectTasksLogPaged.ViewModel>();
+            expression.CreateMap<CQ.Shared.GetProjectLogData.TaskCategory, Web.Dtos.Pages.ProjectTaskLogBrowse.TaskCategory>();
+            expression.CreateMap<CQ.Shared.GetProjectLogData.Task, Web.Dtos.Pages.ProjectTaskLogBrowse.Task>();
+            expression.CreateMap<CQ.Shared.GetProjectLogData.User, Web.Dtos.Pages.ProjectTaskLogBrowse.User>();
+=======
+>>>>>>> make things a bit simpler
+
+            expression.CreateMap<Common.ValueObjects.Paged<CQ.Shared.GetProjectLogData.Project>, Paged<Web.Dtos.Pages.ProjectTaskLogBrowse.Show.ViewModel.Project>>()
+                .ConvertUsing(new PagedConverter<CQ.Shared.GetProjectLogData.Project, Web.Dtos.Pages.ProjectTaskLogBrowse.Show.ViewModel.Project>());
+            expression.CreateMap<Maybe<CQ.Shared.GetProjectLogData.Task>, Web.Dtos.Pages.ProjectTaskLogBrowse.Task>()
+                .ConvertUsing(new MaybeConverter<CQ.Shared.GetProjectLogData.Task, Web.Dtos.Pages.ProjectTaskLogBrowse.Task>());
+            expression.CreateMap<CQ.Shared.GetProjectLogData.Project, Web.Dtos.Pages.ProjectTaskLogBrowse.Show.ViewModel.Project>();
+            expression.CreateMap<CQ.Shared.GetProjectLogData.TaskCategory, Web.Dtos.Pages.ProjectTaskLogBrowse.TaskCategory>();
+            expression.CreateMap<CQ.Shared.GetProjectLogData.Task, Web.Dtos.Pages.ProjectTaskLogBrowse.Task>();
+            expression.CreateMap<CQ.Shared.GetProjectLogData.User, Web.Dtos.Pages.ProjectTaskLogBrowse.User>();
+
+            expression.CreateMap<Common.ValueObjects.Paged<CQ.Shared.GetProjectLogData.Project>, Paged<Web.Dtos.Pages.ProjectTaskLogBrowse.GetProjectTasksLogPaged.ViewModel>>()
+                .ConvertUsing(new PagedConverter<CQ.Shared.GetProjectLogData.Project, Web.Dtos.Pages.ProjectTaskLogBrowse.GetProjectTasksLogPaged.ViewModel>());
+            expression.CreateMap<Maybe<CQ.Shared.GetProjectLogData.Task>, Web.Dtos.Pages.ProjectTaskLogBrowse.Task>()
+                .ConvertUsing(new MaybeConverter<CQ.Shared.GetProjectLogData.Task, Web.Dtos.Pages.ProjectTaskLogBrowse.Task>());
+            expression.CreateMap<CQ.Shared.GetProjectLogData.Project, Web.Dtos.Pages.ProjectTaskLogBrowse.GetProjectTasksLogPaged.ViewModel>();
+            expression.CreateMap<CQ.Shared.GetProjectLogData.TaskCategory, Web.Dtos.Pages.ProjectTaskLogBrowse.TaskCategory>();
+            expression.CreateMap<CQ.Shared.GetProjectLogData.Task, Web.Dtos.Pages.ProjectTaskLogBrowse.Task>();
+            expression.CreateMap<CQ.Shared.GetProjectLogData.User, Web.Dtos.Pages.ProjectTaskLogBrowse.User>();
+
+            expression.CreateMap<CQ.Pages.ProjectTask.UpdateTasks.Result, Web.Dtos.Pages.ProjectTask.PostTasks.Result>();
+        }
+
+        public class PagedConverter<TSource, TDestination> : ITypeConverter<Common.ValueObjects.Paged<TSource>, Paged<TDestination>>
+        {
+            public Paged<TDestination> Convert(Common.ValueObjects.Paged<TSource> source, [AllowNull] Paged<TDestination> destination, ResolutionContext context)
+            {
+                return new Paged<TDestination>(source.Count, context.Mapper.Map<IEnumerable<TDestination>>(source.Items));
+            }
+        }
+
+        public class MaybeConverter<TSource, TDestination> : ITypeConverter<Maybe<TSource>, TDestination>
+            where TDestination : class
+            where TSource : class
+        {
+            [return: AllowNull]
+            public TDestination Convert(Maybe<TSource> source, [AllowNull] TDestination destination, ResolutionContext context)
+            {
+                return source.HasNoValue ? default(TDestination) : context.Mapper.Map<TDestination>(source.Value);
+            }
+        }
+    }
+}
