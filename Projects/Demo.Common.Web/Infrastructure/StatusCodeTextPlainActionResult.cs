@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
     using System.Web.Http;
 
-    public class StatusCodeTextPlainActionResult : IHttpActionResult
+    public sealed class StatusCodeTextPlainActionResult : IHttpActionResult
     {
         public StatusCodeTextPlainActionResult(string message, HttpRequestMessage request, HttpStatusCode statusCode)
         {
@@ -26,7 +26,7 @@
             return Task.FromResult(Execute());
         }
 
-        public HttpResponseMessage Execute()
+        private HttpResponseMessage Execute()
         {
             return new HttpResponseMessage(StatusCode)
             {
