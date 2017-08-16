@@ -30,7 +30,6 @@
     {
         public static void Execute(HttpConfiguration configuration)
         {
-            // blabla xxx
             var container = new Container();
 
             container.Options.DefaultScopedLifestyle = new AsyncScopedLifestyle();
